@@ -1,39 +1,337 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>تفعيل - Falcon Town</title>
-<link rel="icon" href="logo.webp">
-<style>
-  /* ===== Palette: بني × برتقالي ===== */
-  :root{
-    --bg-dark:#1c120f;
-    --bg-mid:#2f1f18;
-    --card: rgba(255,255,255,0.03);
-    --accent:#ff8a29;
-    --accent-2:#ffb36b;
-    --muted:#cbb9a1;
-    --text:#f6efe8;
-    --glass: rgba(255,255,255,0.03);
-    --radius:14px;
-    --shadow: 0 18px 60px rgba(0,0,0,0.6);
-    font-family: "Cairo", "Segoe UI", Tahoma, system-ui, sans-serif;
-  }
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;background:
-    radial-gradient(900px 400px at 10% 10%, rgba(255,138,41,0.03), transparent),
-    linear-gradient(180deg,var(--bg-dark) 0%, var(--bg-mid) 100%);
-    color:var(--text);-webkit-font-smoothing:antialiased;}
-  a{color:inherit}
-  .container{max-width:1150px;margin:26px auto;padding:18px;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التفعيل - Falcon</title>
+    
+    <link rel="icon" type="image/webp" href="favicon.webp"> 
+    <style>
+        /* ------------------- تصميم CSS الجديد ------------------- */
+        :root {
+            /* الألوان المستوحاة من الشعار */
+            --color-dark-brown: #1A1A1A; /* بني/أسود داكن للخلفية والعناوين */
+            --color-light-orange: #FF8C00; /* برتقالي ساطع (من الشعار) */
+            --color-accent-orange: #FF6600; /* برتقالي أغمق للتأثير */
+            --color-text-light: #EEEEEE; /* نص فاتح للخلفية الداكنة */
+            --color-card-bg: #2B2B2B; /* لون خلفية بطاقات الأقسام */
+        }
 
-  /* header */
-  header{display:flex;align-items:center;gap:16px;padding:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:16px;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,0.02);position:relative;z-index:10}
-  .logo{width:88px;height:88px;border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.45));display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.03)}
-  .logo img{width:100%;height:100%;object-fit:cover;display:block}
-  .brand{flex:1}
-  .brand h1{margin:0;font-size:20px;letter-spacing:1px}
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-dark-brown); /* خلفية داكنة */
+            margin: 0;
+            padding: 0;
+            color: var(--color-text-light); /* نص فاتح */
+            text-align: right;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--color-dark-brown);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* ظل داكن */
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            color: var(--color-light-orange); /* لون العنوان بالبرتقالي */
+            text-shadow: 0 0 10px rgba(255, 140, 0, 0.5); /* توهج برتقالي */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 30px auto;
+            background-color: var(--color-card-bg); /* لون خلفية الأقسام */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(255, 140, 0, 0.2); /* إطار بتوهج خفيف */
+            border-top: 5px solid var(--color-light-orange);
+        }
+
+        /* تنسيق التبويبات (Tabs) */
+        .tab-buttons {
+            display: flex;
+            margin-bottom: 0;
+            border-bottom: 2px solid #555;
+        }
+
+        .tab-button {
+            flex-grow: 1;
+            padding: 15px 20px;
+            cursor: pointer;
+            background-color: #3A3A3A;
+            border: none;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--color-text-light);
+            transition: background-color 0.3s, color 0.3s;
+            text-align: center;
+            border-bottom: 2px solid #555;
+            margin-bottom: -2px; 
+        }
+
+        .tab-button:hover {
+            background-color: #4A4A4A;
+        }
+
+        .tab-button.active {
+            background-color: var(--color-card-bg); /* نفس لون خلفية المحتوى */
+            color: var(--color-light-orange);
+            border: 2px solid #555;
+            border-bottom: 2px solid var(--color-card-bg); /* لجعل التبويب يطفو */
+        }
+
+        .tab-content {
+            padding: 30px 10px 10px 10px;
+            display: none; 
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .tab-content h2 {
+            color: var(--color-light-orange);
+            padding-bottom: 10px;
+            margin-top: 0;
+            border-bottom: 2px solid var(--color-accent-orange);
+            margin-bottom: 20px;
+        }
+
+        /* تنسيق النموذج (Form) */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--color-light-orange);
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #555;
+            background-color: #3A3A3A; /* خلفية حقول داكنة */
+            color: var(--color-text-light);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1em;
+            direction: rtl;
+            text-align: right;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-note {
+            display: block;
+            font-size: 0.8em;
+            color: #AAA;
+            margin-top: 5px;
+        }
+        
+        .submit-btn {
+            background-color: var(--color-light-orange);
+            color: var(--color-dark-brown); /* نص داكن على زر ساطع */
+            padding: 12px 25px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.1s;
+            display: block;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--color-accent-orange);
+            transform: translateY(-1px);
+        }
+
+        #response-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #194C2B;
+            color: #79D99A;
+            border: 1px solid #38764B;
+        }
+
+        .error {
+            background-color: #6A1A1A;
+            color: #FFC0C0;
+            border: 1px solid #9A3838;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>التفعيل - Falcon 🦅</h1>
+    </header>
+
+    <div class="container">
+        
+        <div class="tab-buttons">
+            <button class="tab-button active" onclick="openTab('laws-content', this)">📜 القوانين</button>
+            <button class="tab-button" onclick="openTab('activation-content', this)">✍️ طلب التفعيل</button>
+        </div>
+
+        <div id="laws-content" class="tab-content active">
+            <h2>📜 قوانين التفعيل</h2>
+            <p>يرجى قراءة القوانين التالية بعناية قبل تقديم طلب التفعيل. عدم الالتزام بها قد يؤدي إلى رفض الطلب.</p>
+            <ul>
+                <li>يجب أن تكون صادقاً في جميع المعلومات التي تقدمها.</li>
+                <li>يجب أن تلتزم بقوانين السيرفر العامة.</li>
+                <li>يجب أن يكون لديك هدف واضح ومقنع من التفعيل.</li>
+                <li>... (أضف باقي القوانين الخاصة بك هنا)</li>
+            </ul>
+        </div>
+
+        <div id="activation-content" class="tab-content">
+            <h2>✍️ نموذج طلب التفعيل</h2>
+            
+            <form id="activation-form">
+                
+                <div class="form-group">
+                    <label for="discordName">اسمك في الديسكورد (Discord Name)</label>
+                    <input type="text" id="discordName" name="discordName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="age">عمرك</label>
+                    <input type="number" id="age" name="age" min="10" max="99" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reason">سبب تفعيلك</label>
+                    <textarea id="reason" name="reason" required></textarea>
+                    <span class="form-note">يجب أن يكون سبباً مقنعاً ويظهر جديتك في التفعيل.</span>
+                </div>
+
+                <button type="submit" class="submit-btn">إرسال طلب التفعيل</button>
+
+                <div id="response-message"></div>
+            </form>
+        </div>
+
+    </div>
+
+    <script>
+        /* ------------------- كود JavaScript للتحكم في التبويبات والإرسال ------------------- */
+        
+        // رابط الويب هوك الخاص بك 
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1436062603578179757/2BH7CzqNGMI9qe7zAQxYx9Qh1GNfNAFpHsYXOshGJJlJE7qtJsq68ZGauLhZWfanbYmt";
+
+        const form = document.getElementById('activation-form');
+        const responseMessage = document.getElementById('response-message');
+
+        // ********** دالة التحكم في التبويبات **********
+        function openTab(tabId, tabButton) {
+            const contents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < contents.length; i++) {
+                contents[i].classList.remove('active');
+            }
+
+            const buttons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].classList.remove('active');
+            }
+
+            document.getElementById(tabId).classList.add('active');
+            tabButton.classList.add('active');
+        }
+
+        // ********** دالة إرسال الويب هوك **********
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+
+            const discordName = document.getElementById('discordName').value;
+            const age = document.getElementById('age').value;
+            const reason = document.getElementById('reason').value;
+
+            // إعداد محتوى رسالة Discord Embed
+            const payload = {
+                embeds: [{
+                    title: "✨ طلب تفعيل جديد - Falcon",
+                    color: 16744704, // لون برتقالي (FF8C00) بنظام عشري
+                    fields: [
+                        {
+                            name: "👤 اسم المتقدم (Discord)",
+                            value: discordName,
+                            inline: true
+                        },
+                        {
+                            name: "🎂 العمر",
+                            value: age,
+                            inline: true
+                        },
+                        {
+                            name: "📝 سبب التفعيل",
+                            value: reason.substring(0, 1024)
+                        }
+                    ],
+                    timestamp: new Date().toISOString(),
+                    footer: {
+                        text: "تم الإرسال عبر موقع التفعيل"
+                    }
+                }]
+            };
+
+            // عرض رسالة "جاري الإرسال" مؤقتاً
+            responseMessage.style.display = 'block';
+            responseMessage.className = '';
+            responseMessage.textContent = '... جاري إرسال الطلب، يرجى الانتظار';
+
+            // إرسال البيانات
+            fetch(WEBHOOK_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(response => {
+                
+                if (response.ok) {
+                    responseMessage.className = 'success';
+                    responseMessage.textContent = '✅ تم إرسال طلبك بنجاح! سيتم مراجعته قريباً.';
+                    form.reset(); 
+                } else {
+                    responseMessage.className = 'error';
+                    responseMessage.textContent = `❌ حدث خطأ في إرسال الطلب. كود الخطأ: ${response.status}.`;
+                }
+            })
+            .catch(error => {
+                responseMessage.className = 'error';
+                responseMessage.textContent = '❌ فشل الاتصال بالخادم. تأكد من اتصالك بالإنترنت.';
+                console.error('Error sending webhook:', error);
+            });
+        });
+    </script>
+</body>
+</html>
   .brand p{margin:0;color:var(--muted);font-size:13px}
 
   /* nav */
